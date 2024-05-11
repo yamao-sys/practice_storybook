@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+    tty: true
+    volumes:
+      - ./src:/app
+    environment:
+      - WATCHPACK_POLLING=true
+    command: sh -c "npm run dev"
+    ports:
+      - "3001:3000"
+      - "6007:6006"
