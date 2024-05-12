@@ -52,3 +52,8 @@ docker-compose exec app sh
 
 npm run storybook
 ```
+
+Storybookの公開
+```
+npx chromatic --project-token=<project_token>
+```
