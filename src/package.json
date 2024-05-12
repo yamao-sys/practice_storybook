@@ -37,5 +37,9 @@
     "storybook": "^8.0.10",
     "ts-morph": "^22.0.0",
     "typescript": "^5"
+  },
+  "volta": {
+    "node": "20.13.1",
+    "npm": "10.5.2"
   }
 }
