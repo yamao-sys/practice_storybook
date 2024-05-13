@@ -6,9 +6,6 @@ jobs:
   chromatic-deployment:
     name: Deploy Storybook to chromatic
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: src
     timeout-minutes: 7
     steps:
       - name: Checkout repository
@@ -16,7 +13,9 @@ jobs:
         with:
           fetch-depth: 0 # 開発が進みリポジトリが巨大になると時間を要しそうなため、チューニングが要りそう
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd ./src
+          npm ci
 
       # # 差分のチェック
       # - uses: technote-space/get-diff-action@v5
