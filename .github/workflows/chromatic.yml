@@ -16,17 +16,17 @@ jobs:
         working-directory: src
         run: npm install
 
-      # 差分のチェック
-      - uses: technote-space/get-diff-action@v5
-        id: check-diff
-        with:
-          # 対象ファイルのパターン
-          PATTERNS: |
-            src/components/**/*.ts
+      # # 差分のチェック
+      # - uses: technote-space/get-diff-action@v5
+      #   id: check-diff
+      #   with:
+      #     # 対象ファイルのパターン
+      #     PATTERNS: |
+      #       src/components/**/*.ts
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
-        if: steps.check-diff.outputs.diff
+        # if: steps.check-diff.outputs.diff
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
