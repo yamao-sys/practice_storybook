@@ -19,9 +19,12 @@ https://zenn.dev/sum0/articles/9463d16d9d40e2
 ## 本番デプロイ
 - アプリケーションとは別のホスティングで
 https://qiita.com/TakuyaHara/items/af5bbc0f590ca897350c
+	- 例) S3 + CloudFront
 
 - Chromatic
 https://storybook.js.org/tutorials/intro-to-storybook/react/ja/deploy/
+	- アクセス制限を設定したい場合は利用できずだが...
+	- Storybookを公開しても問題ないケースでは採用しても良い
 
 Chromaticを使えばVRTもできるし、一石二鳥だね
 
