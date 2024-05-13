@@ -32,6 +32,8 @@ Chromaticを使えばVRTもできるし、一石二鳥だね
 
 専属コンポーネントと結合して行うことがほとんどのイメージ
 
+→ 専属コンポーネントもstory化して実施していそう(事業上事故が発生するとまずい箇所に絞って実行など)
+
 ## VRT
 - スナップショットテスト
 	- スナップショットテスト: HTMLの出力結果を比較する
@@ -43,9 +45,6 @@ Chromaticを使えばVRTもできるし、一石二鳥だね
 	- 画像キャプチャがUIコンポーネント単位であれば、影響の及んだ中粒度のUIコンポーネントを検出可能
 	- これを実現可能にするのがStorybook
 		- 小粒度UIコンポーネント、中粒度UIコンポーネントをStoryとして登録しておくことにより、VRTの基盤として活用可能
-		- 専属コンポーネント内で小粒度UIコンポーネントを使用していると検知できなさそう...
-			- 専属コンポーネントもmolecules配下はStory化する？
-			- こうなる状況はそもそも設計に改善の余地あり？(専属コンポーネント内で直接小粒度コンポーネントを使用するのを避けるようにすべき？)
 
 ## コマンド類
 Storybookの立ち上げ
@@ -60,3 +59,18 @@ Storybookの公開
 ```
 npx chromatic --project-token=<project_token>
 ```
+
+## 参考
+- Storybookのホスティング(Chromatic)
+  - https://storybook.js.org/tutorials/intro-to-storybook/react/ja/deploy/
+
+- Github ActionsでChromaticに自動デプロイ
+  - https://zenn.dev/keitakn/articles/storybook-deploy-to-chromatic
+  - https://www.chromatic.com/docs/github-actions/
+ 
+## 課題となりそうなこと
+- スナップショット数がプランの上限を超えると課金が必要になる
+- 実行速度
+- mockの難しさ
+
+https://blog.cybozu.io/entry/2023/05/29/090000
