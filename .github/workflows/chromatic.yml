@@ -12,10 +12,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0 # 開発が進みリポジトリが巨大になると時間を要しそうなため、チューニングが要りそう
-      - name: Install dependencies
-        run: |
-          cd ./src
-          npm ci
 
       # 差分のチェック
       - uses: technote-space/get-diff-action@v5
@@ -24,6 +20,12 @@ jobs:
           # 対象ファイルのパターン
           PATTERNS: |
             src/components/**/*.tsx
+
+      - name: Install dependencies
+        if: steps.check-diff.outputs.diff
+        run: |
+          cd ./src
+          npm ci
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
