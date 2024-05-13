@@ -6,6 +6,9 @@ jobs:
   chromatic-deployment:
     name: Deploy Storybook to chromatic
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
     timeout-minutes: 7
     steps:
       - name: Checkout repository
@@ -13,7 +16,6 @@ jobs:
         with:
           fetch-depth: 0 # 開発が進みリポジトリが巨大になると時間を要しそうなため、チューニングが要りそう
       - name: Install dependencies
-        working-directory: src
         run: npm install
 
       # # 差分のチェック
@@ -27,7 +29,6 @@ jobs:
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         # if: steps.check-diff.outputs.diff
-        working-directory: src
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
