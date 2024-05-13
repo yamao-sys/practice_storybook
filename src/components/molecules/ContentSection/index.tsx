@@ -15,6 +15,6 @@ export const ContentSection = ({ children }: Props) => {
 }
 
 const Wrapper = styled.div`
-	margin: ${({ theme }) => theme.size.p20};
+	margin: ${({ theme }) => theme.size.p10};
 `;
 Wrapper.defaultProps = { theme: theme };
