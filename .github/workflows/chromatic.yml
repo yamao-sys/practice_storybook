@@ -1,0 +1,31 @@
+name: chromatic
+
+on: push
+
+jobs:
+  chromatic-deployment:
+    name: Deploy Storybook to chromatic
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 開発が進みリポジトリが巨大になると時間を要しそうなため、チューニングが要りそう
+      - name: Install dependencies
+        run: npm ci
+
+      # 差分のチェック
+      - uses: technote-space/get-diff-action@v5
+        id: check-diff
+        with:
+          # 対象ファイルのパターン
+          PATTERNS: |
+            +src/components/**/*.ts
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        if: steps.check-diff.outputs.diff
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
