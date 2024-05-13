@@ -13,6 +13,7 @@ jobs:
         with:
           fetch-depth: 0 # 開発が進みリポジトリが巨大になると時間を要しそうなため、チューニングが要りそう
       - name: Install dependencies
+        working-directory: src
         run: npm install
 
       # 差分のチェック
@@ -21,7 +22,7 @@ jobs:
         with:
           # 対象ファイルのパターン
           PATTERNS: |
-            +src/components/**/*.ts
+            src/components/**/*.ts
 
       - name: Publish to Chromatic
         uses: chromaui/action@v1
